@@ -124,28 +124,28 @@ const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto py-8 bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-100 rounded-2xl shadow-xl animate-fade-in-up">
+    <div className="max-w-5xl mx-auto px-2 sm:px-6 py-6 sm:py-10 bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-100 rounded-2xl shadow-xl animate-fade-in-up">
       <h2 className="text-3xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 animate-gradient-x animate-float">
         Product Management
       </h2>
-      <div className="mb-4 flex flex-col md:flex-row md:items-center md:space-x-4">
+      <div className="mb-6 flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
         <input
           type="text"
           value={search}
           onChange={handleSearchChange}
           placeholder="Search products by name..."
-          className="border px-4 py-2 rounded w-full md:w-1/2"
+          className="border px-4 py-3 rounded-lg w-full md:w-1/2 shadow-sm focus:ring-2 focus:ring-blue-300"
         />
       </div>
       <form onSubmit={handleFormSubmit} className="mb-8 animate-fade-in-down">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           <input
             type="text"
             name="name"
             value={form.name}
             onChange={handleFormChange}
             placeholder="Product Name"
-            className="border px-4 py-2 rounded"
+            className="border px-4 py-3 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-300"
             required
           />
           <input
@@ -154,7 +154,7 @@ const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             value={form.price}
             onChange={handleFormChange}
             placeholder="Price"
-            className="border px-4 py-2 rounded"
+            className="border px-4 py-3 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-300"
             required
           />
           <input
@@ -163,7 +163,7 @@ const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             value={form.stock}
             onChange={handleFormChange}
             placeholder="Stock"
-            className="border px-4 py-2 rounded"
+            className="border px-4 py-3 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-300"
             required
           />
           <input
@@ -172,23 +172,23 @@ const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             value={form.image}
             onChange={handleFormChange}
             placeholder="Image URL"
-            className="border px-4 py-2 rounded col-span-2 md:col-span-1"
+            className="border px-4 py-3 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-300 col-span-1"
           />
           <textarea
             name="description"
             value={form.description}
             onChange={handleFormChange}
             placeholder="Description"
-            className="border px-4 py-2 rounded col-span-2 md:col-span-3"
+            className="border px-4 py-3 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-300 col-span-1 sm:col-span-2 md:col-span-3"
             rows={2}
           />
         </div>
-        <div className="mt-4">
-          <button type="submit" className="bg-blue-600 text-white px-4 py-1 rounded">
+        <div className="mt-4 flex flex-wrap gap-3">
+          <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold shadow-md hover:bg-blue-700 transition-all">
             {editProduct ? 'Update' : 'Add'}
           </button>
           {editProduct && (
-            <button type="button" onClick={() => setEditProduct(null)} className="ml-2 px-4 py-1 rounded bg-gray-300">
+            <button type="button" onClick={() => setEditProduct(null)} className="px-6 py-2 rounded-lg bg-gray-300 font-semibold shadow-md hover:bg-gray-400 transition-all">
               Cancel
             </button>
           )}
@@ -199,7 +199,8 @@ const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       ) : error ? (
         <div className="text-red-500">{error}</div>
       ) : (
-        <table className="min-w-full bg-white border rounded-xl shadow-lg animate-scale-in">
+        <div className="overflow-x-auto">
+        <table className="min-w-full bg-white border rounded-xl shadow-lg animate-scale-in text-sm md:text-base">
           <thead>
             <tr>
               <th className="border px-4 py-2">Image</th>
@@ -213,27 +214,27 @@ const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           <tbody>
             {products.map((product, idx) => (
               <tr key={product._id} className={idx % 2 === 0 ? 'animate-fade-in-up' : 'animate-fade-in-down'} style={{ animationDelay: `${idx * 60}ms` }}>
-                <td className="border px-4 py-2">
+                <td className="border px-2 py-2 md:px-4">
                   {product.images && product.images[0]?.url ? (
                     <img src={product.images[0].url} alt={product.images[0].alt || product.name} className="h-12 w-12 object-cover rounded" />
                   ) : (
                     <span className="text-gray-400">No image</span>
                   )}
                 </td>
-                <td className="border px-4 py-2">{product.name}</td>
-                <td className="border px-4 py-2">${product.price}</td>
-                <td className="border px-4 py-2">{product.stock}</td>
-                <td className="border px-4 py-2">{product.description}</td>
-                <td className="border px-4 py-2">
+                <td className="border px-2 py-2 md:px-4">{product.name}</td>
+                <td className="border px-2 py-2 md:px-4">${product.price}</td>
+                <td className="border px-2 py-2 md:px-4">{product.stock}</td>
+                <td className="border px-2 py-2 md:px-4">{product.description}</td>
+                <td className="border px-2 py-2 md:px-4 flex flex-col sm:flex-row gap-2 justify-center items-center min-w-[120px]">
                   <button
-                    className="bg-blue-500 text-white px-4 py-1.5 rounded mr-2 min-w-[70px] transition-all duration-200 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    className="bg-blue-500 text-white px-5 py-2 rounded-lg min-w-[90px] transition-all duration-200 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 text-sm md:text-base"
                     onClick={() => handleEdit(product)}
                   >
                     Edit
                   </button>
                   {state.user?.role === 'admin' && (
                     <button
-                      className="bg-red-500 text-white px-4 py-1.5 rounded min-w-[70px] transition-all duration-200 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
+                      className="bg-red-500 text-white px-5 py-2 rounded-lg min-w-[90px] transition-all duration-200 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 text-sm md:text-base"
                       onClick={() => handleDelete(product._id)}
                     >
                       Delete
@@ -244,6 +245,7 @@ const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             ))}
           </tbody>
         </table>
+        </div>
       )}
     </div>
   );
