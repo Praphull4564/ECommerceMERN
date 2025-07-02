@@ -52,7 +52,7 @@ const Home: React.FC = () => {
       
       // More specific error handling
       if (error.code === 'ERR_NETWORK') {
-        setError('Unable to connect to server. Please ensure the backend is running on port 5000.');
+        setError('Unable to connect to server. Please ensure the backend is running and the API URL is correct.');
       } else if (error.response?.status === 404) {
         setError('Featured products endpoint not found. Using sample data.');
         // Set some sample data for demonstration
