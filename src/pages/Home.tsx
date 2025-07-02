@@ -35,7 +35,7 @@ const Home: React.FC = () => {
       setError(null);
       
       // Use the correct API URL from environment variables
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const apiUrl = import.meta.env.VITE_API_URL;
       const response = await axios.get(`${apiUrl}/products/featured`);
       
       if (response.data.success) {

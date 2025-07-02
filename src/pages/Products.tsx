@@ -86,7 +86,7 @@ const Products: React.FC = () => {
       params.append('page', searchParams.get('page') || '1');
       params.append('limit', '12');
 
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const apiUrl = import.meta.env.VITE_API_URL;
       const response = await axios.get(`${apiUrl}/products?${params.toString()}`);
       
       if (response.data.success) {
