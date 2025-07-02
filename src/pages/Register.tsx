@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
-import { Eye, EyeOff, Mail, Lock, User } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, User, ShoppingBag, ShoppingCart, Star, Gift } from 'lucide-react';
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -107,8 +107,13 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 animate-fade-in-up">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md animate-fade-in-down">
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 animate-fade-in-up relative overflow-hidden">
+      {/* Doodles background */}
+      <ShoppingBag className="absolute left-4 top-4 w-14 h-14 text-purple-200 opacity-60 animate-float z-0" />
+      <ShoppingCart className="absolute right-8 top-16 w-16 h-16 text-indigo-200 opacity-50 animate-float z-0" style={{animationDelay: '1s'}} />
+      <Star className="absolute left-16 bottom-8 w-10 h-10 text-yellow-200 opacity-60 animate-float z-0" style={{animationDelay: '2s'}} />
+      <Gift className="absolute right-12 bottom-4 w-12 h-12 text-pink-200 opacity-60 animate-float z-0" style={{animationDelay: '1.5s'}} />
+      <div className="sm:mx-auto sm:w-full sm:max-w-md animate-fade-in-down z-10 relative">
         <div className="text-center animate-float">
           <Link to="/" className="text-3xl font-bold text-blue-600 gradient-text">
             ShopHub
@@ -128,7 +133,7 @@ const Register: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md z-10 relative">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           {(authState.error || validationErrors.length > 0) && (
             <div className="mb-6">
